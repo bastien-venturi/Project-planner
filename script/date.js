@@ -40,4 +40,17 @@ function calculateRemainingDays() {
         document.getElementById('result').textContent = `La date sélectionnée est passée.`;
     }
 }
+
+
+
+
+
+  // Function for the current date
+  function date() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    return `${day}/${month}/${year}`;
+}
 */
