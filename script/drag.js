@@ -1,5 +1,5 @@
-const draggables = document.querySelectorAll(".draggable");
-const containers = document.querySelectorAll(".container");
+const draggables = document.querySelectorAll(".draggable"); // Selectionne toute les classes "draggable"
+const containers = document.querySelectorAll(".container"); // Selectionne toute les classes "container"
 
 draggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
