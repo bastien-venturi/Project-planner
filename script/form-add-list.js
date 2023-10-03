@@ -2,9 +2,14 @@
 // Récupérer la balise <main>
 let main = document.querySelector('main');
 
+// Créer un conteneur pour toutes les listes crées
+let listContainer = document.createElement('div');
+listContainer.classList.add('listContainer');
+listContainer.style.display = 'flex';
 // Créer un formulaire
 let form = document.createElement('form');
-main.appendChild(form);
+listContainer.appendChild(form);
+main.appendChild(listContainer);
 
 // Créer un conteneur ("bouton") pour ajouter une liste
 let addListContainer = document.createElement('div');
@@ -21,15 +26,17 @@ form.appendChild(addListContainer);
 // Conteneur pour les inputs
 let inputGroup = document.createElement('div');
 let inputName = createInput('Saisissez le titre de la liste...');
-let inputDescription = createInput('Saisissez la description...');
-let inputDueDate = createInput('Saisissez la date d\'échéance...');
 
 inputGroup.appendChild(inputName);
-inputGroup.appendChild(inputDescription);
-inputGroup.appendChild(inputDueDate);
 
 // Conteneur pour les boutons (ajouter une liste - supprimer)
 let buttonGroup = document.createElement('div');
+// ---------------------------------------------
+// TODO : Supprimer CSS
+buttonGroup.style.display = 'flex';
+buttonGroup.style.justifyContent = 'space-between';
+buttonGroup.style.width = ' 200px';
+// ---------------------------------------------
 let buttonAddList = createButton('Ajouter la liste', createNewList);
 let buttonDeleteList = createButton('Annuler', deleteList);
 
@@ -77,20 +84,42 @@ function deleteList(e) {
     // e.preventDefault();
     console.log('Supprimer la liste');
 
+    // Vider les champs de formulaire
+    inputName.value = '';
+
     addListContainer.addEventListener('click', toggleList);
 }
 
-function createNewList(e) {
-    // e.preventDefault();
-    console.log('Créer une nouvelle liste');
-    // console.log(e);
-    console.log(inputName.value);
-    console.log(inputDescription.value);
-    console.log(inputDueDate.value);
 
+// index pour identifier les listes
+let indexList = 1;
+
+function createNewList(e) {
+    e.preventDefault();
+    console.log('Créer une nouvelle liste');
+
+    // Nouvelle liste
+    let listToAdd = document.createElement('div');
+    // ---------------------------------------------
+    // TODO : Supprimer CSS
+    listToAdd.style.padding = '20px';
+    listToAdd.style.margin = ' 0 20px';
+    listToAdd.style.backgroundColor = 'lightgrey';
+    // ---------------------------------------------
+    listToAdd.classList.add(indexList);
+    let listName = document.createElement('h2');
+    listName.textContent = inputName.value ? inputName.value : '/';
+    listToAdd.appendChild(listName);
+
+
+    // Ajouter la liste au conteneur
+    listContainer.insertBefore(listToAdd, form);
+
+    // Vider les champs de formulaire
     inputName.value = '';
-    inputDescription.value = '';
-    inputDueDate.value = '';
+
+    // Incrémenter l'indexList
+    indexList++;
 
     addListContainer.addEventListener('click', toggleList);
 }
