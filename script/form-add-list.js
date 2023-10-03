@@ -83,7 +83,7 @@ function toggleList(e) {
 function deleteList(e) {
     // e.preventDefault();
     console.log('Supprimer la liste');
-
+    console.log(e);
     // Vider les champs de formulaire
     inputName.value = '';
 
@@ -100,16 +100,22 @@ function createNewList(e) {
 
     // Nouvelle liste
     let listToAdd = document.createElement('div');
+    listToAdd.classList.add('list' + indexList);
     // ---------------------------------------------
     // TODO : Supprimer CSS
     listToAdd.style.padding = '20px';
     listToAdd.style.margin = ' 0 20px';
     listToAdd.style.backgroundColor = 'lightgrey';
     // ---------------------------------------------
-    listToAdd.classList.add(indexList);
     let listName = document.createElement('h2');
-    listName.textContent = inputName.value ? inputName.value : '/';
+    listName.textContent = inputName.value ? inputName.value : ' ';
+    let deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Supprimer la liste';
+    deleteBtn.addEventListener('click', function deleteThisList(e) {
+        e.target.parentNode.remove();
+    })
     listToAdd.appendChild(listName);
+    listToAdd.appendChild(deleteBtn);
 
 
     // Ajouter la liste au conteneur
