@@ -11,7 +11,7 @@ calculatebutton.addEventListener('click', () => {
     const timeDifferencePrompt = currenttime - userEnteredTime;
     const promptass = Math.floor(timeDifferencePrompt / (24 * 60 * 60 * 1000));
     
-    remaining-time.textContent = ` ${promptass} days.`;
+    // remaining-time.textContent = ` ${promptass} days.`;
 });
 
 
