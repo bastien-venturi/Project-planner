@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css">
+    <script defer src="./script/sorting.js"></script>
+    <script defer src="script/drag.js"></script>
+
     <title>Document</title>
     <link rel="stylesheet" href="./dist/style.css" />
     <!-- <link rel="stylesheet" href="style/styleV.css" /> -->
@@ -19,8 +23,22 @@
         <p class="draggable" draggable="true">Test 3</p>
         <p class="draggable" draggable="true">Test 4</p>
       </div>
-    </main>
-    <footer></footer>
-    <script src="script/drag.js"></script>
+    
+    
+      <!-- dropdown -->
+    <div class="dropdown">
+      <select id="dropdown1" onchange="handleDropdownChange(this)">
+          <option value="option1" selected>To do</option>
+          <option value="option2">Doing</option>
+          <option value="option3">Done</option>
+      </select>
+      <select id="dropdown2" onchange="handleDropdownChange(this)">
+          <option value="option4" selected>URGENT</option>
+          <option value="option5">Date</option>
+          <option value="option6">Name</option>
+      </select>
+  </div>
+  </main>
+  <footer></footer>
   </body>
 </html>
