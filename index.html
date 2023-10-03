@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css">
-    <script defer src="script/sorting.js"></script>
+    <link rel="stylesheet" href="./style/style.css" />
+    <script defer src="./script/sorting.js"></script>
     <script defer src="script/drag.js"></script>
     <script defer src="script/form-add-list.js"></script>
     <script defer src="script/date.js"></script>
@@ -14,8 +14,35 @@
     <!-- <link rel="stylesheet" href="style/styleV.css" /> -->
   </head>
   <body>
-    <header></header>
-    <main>
+    <header>
+      <div
+        class="flex items-center flex-shrink-0 w-full h-16 px-10 bg-white bg-opacity-75"
+      >
+        <div class="ml-10">
+          <a class="mx-2 text-sm font-semibold text-indigo-700" href="#"
+            >Projects</a
+          >
+          <a
+            class="mx-2 text-sm font-semibold text-gray-600 hover:text-indigo-700"
+            href="#"
+            >Team</a
+          >
+          <a
+            class="mx-2 text-sm font-semibold text-gray-600 hover:text-indigo-700"
+            href="#"
+            >Activity</a
+          >
+        </div>
+        <buton
+          class="flex items-center justify-center w-8 h-8 ml-auto overflow-hidden rounded-full cursor-pointer"
+        >
+          <img src="#" alt="" />
+        </buton>
+      </div>
+    </header>
+    <main
+      class="flex flex-col w-screen h-screen overflow-auto text-gray-900 bg-gradient-to-tr from-blue-200 via-indigo-400 to-red-600"
+    >
       <!-- Drag and Drop -->
       <div class="container bg-blue-800 p-4 mt-4">
         <p class="draggable" draggable="true">Test 1</p>
@@ -25,24 +52,21 @@
         <p class="draggable" draggable="true">Test 3</p>
         <p class="draggable" draggable="true">Test 4</p>
       </div>
-    
-    
-      <!-- dropdown -->
-    <div class="dropdown">
-      <select id="dropdown1" onchange="handleDropdownChange(this)">
-          <option value="To-do" selected>To do</option>
-          <option value="Doing">Doing</option>
-          <option value="Done">Done</option>
-      </select>
-      <select id="dropdown2" onchange="handleDropdownChange(this)">
-          <option value="URGENT" selected>URGENT</option>
-          <option value="Date">Date</option>
-          <option value="Name">Name</option>
-      </select>
-  </div>
-  </main>
-  <footer></footer>
 
-  <script src="script/form-add-list.js"></script>
+      <!-- dropdown -->
+      <div class="dropdown">
+        <select id="dropdown1" onchange="handleDropdownChange(this)">
+          <option value="option1" selected>To do</option>
+          <option value="option2">Doing</option>
+          <option value="option3">Done</option>
+        </select>
+        <select id="dropdown2" onchange="handleDropdownChange(this)">
+          <option value="option4" selected>URGENT</option>
+          <option value="option5">Date</option>
+          <option value="option6">Name</option>
+        </select>
+      </div>
+    </main>
+    <footer></footer>
   </body>
 </html>
