@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css">
-    <script defer src="./script/sorting.js"></script>
+    <script defer src="script/sorting.js"></script>
     <script defer src="script/drag.js"></script>
+    <script defer src="script/form-add-list.js"></script>
 
     <title>Document</title>
     <link rel="stylesheet" href="./dist/style.css" />
@@ -28,14 +29,14 @@
       <!-- dropdown -->
     <div class="dropdown">
       <select id="dropdown1" onchange="handleDropdownChange(this)">
-          <option value="option1" selected>To do</option>
-          <option value="option2">Doing</option>
-          <option value="option3">Done</option>
+          <option value="To-do" selected>To do</option>
+          <option value="Doing">Doing</option>
+          <option value="Done">Done</option>
       </select>
       <select id="dropdown2" onchange="handleDropdownChange(this)">
-          <option value="option4" selected>URGENT</option>
-          <option value="option5">Date</option>
-          <option value="option6">Name</option>
+          <option value="URGENT" selected>URGENT</option>
+          <option value="Date">Date</option>
+          <option value="Name">Name</option>
       </select>
   </div>
   </main>
