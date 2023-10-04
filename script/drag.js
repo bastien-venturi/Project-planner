@@ -3,11 +3,11 @@ const containers = document.querySelectorAll(".container"); // Selectionne toute
 
 draggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
-    draggable.classList.add("bg-black");
+    draggable.classList.add("bg-blue-600", "opacity-50");
   });
 
   draggable.addEventListener("dragend", () => {
-    draggable.classList.remove("bg-black");
+    draggable.classList.remove("bg-blue-600", "opacity-50");
   });
 });
 
@@ -15,8 +15,8 @@ containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
     const afterElmt = getDragAfterElement(container, e.clientY);
-    const draggable = document.querySelector(".bg-black");
-    if (afterElmt == null) {
+    const draggable = document.querySelector(".bg-blue-600");
+    if (afterElmt === null) {
       container.appendChild(draggable);
     } else {
       container.insertBefore(draggable, afterElmt);
@@ -26,7 +26,7 @@ containers.forEach((container) => {
 
 function getDragAfterElement(container, y) {
   const draggableElmt = [
-    ...container.querySelectorAll(".draggable:not(.bg-black)"),
+    ...container.querySelectorAll(".draggable:not(.bg-blue-600)"),
   ];
 
   return draggableElmt.reduce(
