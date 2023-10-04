@@ -7,6 +7,10 @@
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+import {createInput} from './createInput.js';
+import {createButton} from './createButton.js';
+import {toggleTask} from './form-add-task.js';
+
 // Récupérer la balise <main>
 let main = document.querySelector('main');
 
@@ -51,18 +55,8 @@ buttonGroup.appendChild(buttonCancel);
 // Ajouter un évènement au clic sur le bouton "Ajouter une liste"
 formList.addEventListener('click', toggleList);
 
-function createInput(placeholder) {
-    let input = document.createElement('input');
-    input.setAttribute('placeholder', placeholder);
-    return input;
-}
 
-function createButton(text, clickHandler) {
-    let button = document.createElement('button');
-    button.textContent = text;
-    button.addEventListener('click', clickHandler);
-    return button;
-}
+
 
 function toggleList(e) {
     // e.preventDefault();
@@ -139,9 +133,15 @@ function createNewList(e) {
     addTaskContainer.appendChild(addTaskContainerText);
     formTask.appendChild(addTaskContainer);
     // Ajouter un évènement au clic sur le bouton "Ajouter une tâche"
-    formTask.addEventListener('click', function() {
-        toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText);
-    });
+    // formTask.addEventListener('click', function() {
+    //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+    // });
+    function toggleTaskListener(e) {
+        toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+    }
+    
+    // Ajoutez un événement sur formTask en utilisant toggleTaskListener
+    formTask.addEventListener('click', toggleTaskListener);
 
     listToAdd.appendChild(deleteBtn);
     listToAdd.appendChild(listName);
@@ -162,129 +162,3 @@ function createNewList(e) {
 
 
 
-
-
-
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//                             TASKS
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-// // Conteneur pour les inputs
-// let inputGroup = document.createElement('div');
-// let inputName = createInput('Saisissez le titre de la liste...');
-
-// inputGroup.appendChild(inputName);
-
-// // Conteneur pour les boutons (ajouter une liste - supprimer)
-// let buttonGroup = document.createElement('div');
-// // ---------------------------------------------
-// // TODO : Supprimer CSS
-// buttonGroup.style.display = 'flex';
-// buttonGroup.style.justifyContent = 'space-between';
-// buttonGroup.style.width = ' 200px';
-// // ---------------------------------------------
-// let buttonAddList = createButton('Ajouter la liste', createNewList);
-// let buttonDeleteList = createButton('Annuler', deleteList);
-
-
-// buttonGroup.appendChild(buttonAddList);
-// buttonGroup.appendChild(buttonDeleteList);
-
-
-
-
-function toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText) {
-    // e.preventDefault();
-    console.log('toggleTask');
-    console.log(spanPlusSymbolTask);
-    console.log(addTaskContainer);
-
-    if (spanPlusSymbolTask.parentNode === addTaskContainer) {
-        console.log('yes');
-        addTaskContainer.removeChild(spanPlusSymbolTask);
-        addTaskContainer.removeChild(addTaskContainerText);
-        // addTaskContainer.appendChild(inputGroup);
-        // addTaskContainer.appendChild(buttonGroup);
-        // Supprime l'écouteur d'événement "click" du conteneur pour éviter les doublons
-        // addTaskContainer.removeEventListener('click', toggleTask);
-    } 
-    else {
-        console.log('no');
-    //     addListContainer.removeChild(inputGroup);
-    //     addListContainer.removeChild(buttonGroup);
-    //     addListContainer.appendChild(spanPlusSymbolTask);
-    //     addListContainer.appendChild(addListContainerText);
-    //     // Ajoute l'écouteur d'événement "click" au conteneur pour restaurer la fonctionnalité
-    //     addListContainer.addEventListener('click', toggleList);
-    }
-}
-
-// function deleteList(e) {
-//     // e.preventDefault();
-//     console.log('Supprimer la liste');
-//     console.log(e);
-//     // Vider les champs de formulaire
-//     inputName.value = '';
-
-//     addListContainer.addEventListener('click', toggleList);
-// }
-
-
-// // index pour identifier les listes
-// let indexList = 1;
-
-// function createNewList(e) {
-//     e.preventDefault();
-//     console.log('Créer une nouvelle liste');
-
-//     // Nouvelle liste (conteneur)
-//     let listToAdd = document.createElement('div');
-//     listToAdd.classList.add('list' + indexList);
-//     // ---------------------------------------------
-//     // TODO : Supprimer CSS
-//     listToAdd.style.padding = '20px';
-//     listToAdd.style.margin = ' 0 20px';
-//     listToAdd.style.backgroundColor = 'lightgrey';
-//     // ---------------------------------------------
-//     // Créer le titre de la liste
-//     let listName = document.createElement('h2');
-//     listName.textContent = inputName.value ? inputName.value : ' ';
-//     // Créer un bouton pour supprimer la liste
-//     let deleteBtn = document.createElement('button');
-//     deleteBtn.textContent = 'Supprimer la liste';
-//     deleteBtn.addEventListener('click', function deleteThisList(e) {
-//         e.target.parentNode.remove();
-//     });
-//     // Créer un conteneur ("bouton") pour ajouter une tâche
-//     let addTaskContainer = document.createElement('div');
-//     addTaskContainer.classList.add('addTaskContainerClass');
-//     let spanPlusSymbolTask = document.createElement('span');
-//     spanPlusSymbolTask.textContent = '+';
-//     let addTaskContainerText = document.createTextNode(' Ajouter une tâche ');
-//     // Ajouter un évènement au clic sur le bouton "Ajouter une tâche"
-//     addTaskContainer.addEventListener('click', toggleTask);
-
-//     listToAdd.appendChild(deleteBtn);
-//     listToAdd.appendChild(listName);
-//     listToAdd.appendChild(addTaskContainerText);
-
-
-//     // Ajouter la liste au conteneur
-//     listContainer.insertBefore(listToAdd, form);
-
-//     // Vider les champs de formulaire
-//     inputName.value = '';
-
-//     // Incrémenter l'indexList
-//     indexList++;
-
-//     addListContainer.addEventListener('click', toggleList);
-// }
