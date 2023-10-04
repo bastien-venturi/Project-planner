@@ -1,14 +1,51 @@
 //import {inputDueDate} from './form-add-task';
-const inputDueDate = new Date('2023-10-30');
 
 
-const enterdate = new Date(inputDueDate.value);
-const currentime = Date.now();
-const userentertime = enterdate.getTime();
-const timeDifference = currentime - userentertime;
-const displayduedate = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
+// Demandez à l'utilisateur d'entrer une date au format "jj-mm-aaaa"
+const inputDateString = prompt("Veuillez entrer une date au format jj-mm-aaaa :");
 
-console.log(displayduedate)
+// Convertissez la chaîne de caractères en objet Date
+const inputDueDate = parseDate(inputDateString);
+
+// Vérifiez si la date est valide
+if (!isNaN(inputDueDate.getTime())) {
+  const currentDate = new Date();
+  const timeDifference = inputDueDate - currentDate;
+
+  // Calculez les jours et les heures restants
+  const daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
+  
+
+  // Affichez le résultat
+  if (daysRemaining > 0) {
+    console.log(`${daysRemaining}`);
+  } else {
+    console.log(`Warning!`);
+  }
+};
+
+
+
+
+/* Fonction pour convertir une chaîne de caractères en objet Date
+function parseDate(input) {
+    const parts = input.split("-");
+    if (parts.length === 3) {
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1;
+            const year = parseInt(parts[2], 10);
+            return new Date(year, month, day);
+    }
+}
+*/
+
+
+
+
+
+
+
+console.log(displayduedate);
  // Function for the current date
  
  function formatDate(date) {
@@ -24,7 +61,7 @@ console.log(displayduedate)
  const displaycreadate = formatDate(datecreation);
  
  
- console.log(displayduedate);
+ 
  console.log(displaycreadate);
  
 
