@@ -1,17 +1,14 @@
-import {inputDueDate,createNewTask} from './form-add-list';
+//import {inputDueDate} from './form-add-task';
+const inputDueDate = new Date('2023-10-30');
 
 
-    const enterdate = new Date(inputDueDate.value);
-    const currenttime = Date.now();
-    const userEnteredTime = enterdate.getTime();
-    const timeDifference = currenttime - userEnteredTime;
-    const daypass = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
-    
-    displayduedate.textContent = ` ${daypass} days.`;
+const enterdate = new Date(inputDueDate.value);
+const currentime = Date.now();
+const userentertime = enterdate.getTime();
+const timeDifference = currentime - userentertime;
+const displayduedate = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
 
-
-
-
+console.log(displayduedate)
  // Function for the current date
  
  function formatDate(date) {
@@ -24,13 +21,14 @@ import {inputDueDate,createNewTask} from './form-add-list';
  }
  
  const datecreation = new Date();
- const formattedate = formatDate(datecreation);
+ const displaycreadate = formatDate(datecreation);
  
- displaycreadate.textContent = formattedate;
  
+ console.log(displayduedate);
  console.log(displaycreadate);
+ 
 
-export {displaycreadate,displayduedate};
+//export {displaycreadate,displayduedate};
 
 /*
 const inputDate = document.createElement('input');
