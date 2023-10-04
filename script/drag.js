@@ -3,11 +3,11 @@ const containers = document.querySelectorAll(".container"); // Selectionne toute
 
 draggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
-    draggable.classList.add("dragging");
+    draggable.classList.add("bg-black");
   });
 
   draggable.addEventListener("dragend", () => {
-    draggable.classList.remove("dragging");
+    draggable.classList.remove("bg-black");
   });
 });
 
@@ -15,7 +15,7 @@ containers.forEach((container) => {
   container.addEventListener("dragover", (e) => {
     e.preventDefault();
     const afterElmt = getDragAfterElement(container, e.clientY);
-    const draggable = document.querySelector(".dragging");
+    const draggable = document.querySelector(".bg-black");
     if (afterElmt == null) {
       container.appendChild(draggable);
     } else {
@@ -26,7 +26,7 @@ containers.forEach((container) => {
 
 function getDragAfterElement(container, y) {
   const draggableElmt = [
-    ...container.querySelectorAll(".draggable:not(.dragging)"),
+    ...container.querySelectorAll(".draggable:not(.bg-black)"),
   ];
 
   return draggableElmt.reduce(
