@@ -133,15 +133,15 @@ function createNewList(e) {
     addTaskContainer.appendChild(addTaskContainerText);
     formTask.appendChild(addTaskContainer);
     // Ajouter un évènement au clic sur le bouton "Ajouter une tâche"
-    // formTask.addEventListener('click', function() {
-    //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-    // });
-    function toggleTaskListener(e) {
+    formTask.addEventListener('click', function() {
         toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-    }
+    }, { once: true });
+    // function toggleTaskListener(e) {
+    //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+    // }
     
-    // Ajoutez un événement sur formTask en utilisant toggleTaskListener
-    formTask.addEventListener('click', toggleTaskListener);
+    // // Ajoutez un événement sur formTask en utilisant toggleTaskListener
+    // formTask.addEventListener('click', toggleTaskListener);
 
     listToAdd.appendChild(deleteBtn);
     listToAdd.appendChild(listName);

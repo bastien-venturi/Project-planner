@@ -9,7 +9,7 @@
 
 import {createInput} from './createInput.js';
 import {createButton} from './createButton.js';
-import {toggleTaskListener} from './toggleTaskListener.js';
+
 
 // Conteneur pour les inputs
 let inputGroupTask = document.createElement('div');
@@ -42,12 +42,14 @@ buttonGroupTask.appendChild(buttonDeleteTask);
 
 
 
-function toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask) {
+function toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask, e) {
     // e.preventDefault();
     console.log('formTask', formTask);
     // console.log('toggleTask');
     console.log(spanPlusSymbolTask);
     console.log(addTaskContainer);
+
+
 
     if (spanPlusSymbolTask.parentNode === addTaskContainer) {
         console.log('yes');
@@ -56,10 +58,11 @@ function toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, 
         addTaskContainer.appendChild(inputGroupTask);
         addTaskContainer.appendChild(buttonGroupTask);
         // Supprime l'écouteur d'événement "click" du conteneur pour éviter les doublons
-        formTask.removeEventListener('click', toggleTaskListener);
-        // formTask.removeEventListener('click', function() {
-        //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-        // });
+        // formTask.removeEventListener('click', toggleTaskListener);
+        formTask.removeEventListener('click', function(e) {
+            // e.preventDefault();
+            toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+        });
 
     } 
     else {
@@ -70,10 +73,11 @@ function toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, 
         addTaskContainer.appendChild(addTaskContainerText);
         //  // Ajoute l'écouteur d'événement "click" au conteneur pour restaurer la fonctionnalité
         //  addListContainer.addEventListener('click', toggleList);
-        // formTask.addEventListener('click', function() {
-        //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-        // });
-        formTask.addEventListener('click', toggleTaskListener);
+        formTask.addEventListener('click', function(e) {
+            // e.preventDefault();
+            toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+        });
+        // formTask.addEventListener('click', toggleTaskListener);
         
     
     }
@@ -88,7 +92,10 @@ function deleteTask(e) {
 //     inputDescription.value = '';
 //     inputDueDate.value = '';
 
-//     addListContainer.addEventListener('click', toggleList);
+    formTask.addEventListener('click', function(e) {
+        // e.preventDefault();
+        toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+    });
 }
 
 
@@ -144,7 +151,10 @@ function createNewTask(e) {
 //     // Incrémenter l'indexList
 //     indexList++;
 
-//     addListContainer.addEventListener('click', toggleList);
+    formTask.addEventListener('click', function(e) {
+        // e.preventDefault();
+        toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
+    });
 }
 
 
