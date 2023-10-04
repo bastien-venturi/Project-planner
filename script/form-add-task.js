@@ -1,14 +1,14 @@
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//                             TASKS
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-import { createInput } from "./createInput.js";
-import { createButton } from "./createButton.js";
-import { toggleTaskListener } from "./toggleTaskListener.js";
+import { createInput } from './createInput.js';
+import { createButton } from './createButton.js';
+
+
+// Récupérer la div cartModal
+let cartModal = document.querySelector('#cartModal');
+console.log(cartModal);
+
+
+
 
 // Conteneur pour les inputs
 let inputGroupTask = document.createElement("div");
@@ -31,114 +31,70 @@ buttonGroupTask.style.display = "flex";
 buttonGroupTask.style.justifyContent = "space-between";
 buttonGroupTask.style.width = " 200px";
 // ---------------------------------------------
-let buttonAddTask = createButton("Ajouter la liste", createNewTask);
-let buttonDeleteTask = createButton("Annuler", deleteTask);
+// let buttonAddTask = createButton("Ajouter la tâche", createNewTask);
+let buttonAddTask = createButton("Ajouter la tâche");
+let buttonDeleteTask = createButton("Annuler");
 
 buttonGroupTask.appendChild(buttonAddTask);
 buttonGroupTask.appendChild(buttonDeleteTask);
 
-function toggleTask(
-  spanPlusSymbolTask,
-  addTaskContainer,
-  addTaskContainerText,
-  formTask
-) {
-  // e.preventDefault();
-  console.log("formTask", formTask);
-  // console.log('toggleTask');
-  console.log(spanPlusSymbolTask);
-  console.log(addTaskContainer);
 
-  if (spanPlusSymbolTask.parentNode === addTaskContainer) {
-    console.log("yes");
-    addTaskContainer.removeChild(spanPlusSymbolTask);
-    addTaskContainer.removeChild(addTaskContainerText);
-    addTaskContainer.appendChild(inputGroupTask);
-    addTaskContainer.appendChild(buttonGroupTask);
-    // Supprime l'écouteur d'événement "click" du conteneur pour éviter les doublons
-    formTask.removeEventListener("click", toggleTaskListener);
-    // formTask.removeEventListener('click', function() {
-    //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-    // });
-  } else {
-    console.log("no");
-    addTaskContainer.removeChild(inputGroupTask);
-    addTaskContainer.removeChild(buttonGroupTask);
-    addTaskContainer.appendChild(spanPlusSymbolTask);
-    addTaskContainer.appendChild(addTaskContainerText);
-    //  // Ajoute l'écouteur d'événement "click" au conteneur pour restaurer la fonctionnalité
-    //  addListContainer.addEventListener('click', toggleList);
-    // formTask.addEventListener('click', function() {
-    //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
-    // });
-    formTask.addEventListener("click", toggleTaskListener);
-  }
+
+
+// Open modal
+function openModal(newTabList, allListsTab) {
+    inputNameTask.value = '';
+    inputDescription.value ='';
+    inputDueDate.value = '';
+
+    console.log(newTabList);
+    cartModal.style.display = "block";
+    cartModal.style.height = "500px";
+    cartModal.style.width = "500px";
+    cartModal.style.backgroundColor = "white";
+    cartModal.style.position = "absolute";
+    cartModal.style.top = "40%";
+    cartModal.style.left = "20%";
+    cartModal.style.zIndex = "9999";
+
+    cartModal.appendChild(inputGroupTask);
+    cartModal.appendChild(buttonGroupTask);
+
+
+    // buttonAddTask.addEventListener('click', function() { createNewTask(listName) }, { once: true });
+    buttonAddTask.addEventListener('click', function() { 
+        console.log('allListsTab', allListsTab);
+        // Créer un objet task
+        let newTask = {
+            nameList: newTabList.name,
+            nameTask: inputNameTask.value,
+            descriptionTask: inputDescription.value,
+            dueDateTask: inputDueDate.value,
+            status: null
+        }
+
+        newTabList.taskTab.push(newTask);
+        console.log('newTabList', newTabList);
+
+        closeModal();
+    }, {once: true});
+
+    buttonDeleteTask.addEventListener('click', closeModal, {once: true})
+
+    
+}
+// Close modal
+function closeModal() {
+    cartModal.style.display = "none";
 }
 
-function deleteTask(e) {
-  e.preventDefault();
-  console.log("Supprimer la tâche");
-  //     console.log(e);
-  //     // Vider les champs de formulaire
-  //     inputNameTask.value = '';
-  //     inputDescription.value = '';
-  //     inputDueDate.value = '';
 
-  //     addListContainer.addEventListener('click', toggleList);
-}
 
-// index pour identifier les listes
-let indexTask = 1;
 
-function createNewTask(e) {
-  e.preventDefault();
-  console.log("Créer une nouvelle tâche");
+export {openModal};
 
-  console.log("inputNameTask.value", inputNameTask.value);
-  console.log("inputDescription.value", inputDescription.value);
-  console.log("inputDueDate.value", inputDueDate.value);
 
-  // Nouvelle tâche (conteneur)
-  let taskToAdd = document.createElement("div");
-  taskToAdd.classList.add("task" + indexTask);
-  // ---------------------------------------------
-  // TODO : Supprimer CSS
-  taskToAdd.style.padding = "20px";
-  taskToAdd.style.margin = " 0 20px";
-  taskToAdd.style.backgroundColor = "lightgreen";
-  // ---------------------------------------------
-  //     // Créer le titre de la liste
-  //     let listName = document.createElement('h2');
-  //     listName.textContent = inputName.value ? inputName.value : ' ';
-  //     // Créer un bouton pour supprimer la liste
-  //     let deleteBtn = document.createElement('button');
-  //     deleteBtn.textContent = 'Supprimer la liste';
-  //     deleteBtn.addEventListener('click', function deleteThisList(e) {
-  //         e.target.parentNode.remove();
-  //     });
-  //     // Créer un conteneur ("bouton") pour ajouter une tâche
-  //     let addTaskContainer = document.createElement('div');
-  //     addTaskContainer.classList.add('addTaskContainerClass');
-  //     let spanPlusSymbolTask = document.createElement('span');
-  //     spanPlusSymbolTask.textContent = '+';
-  //     let addTaskContainerText = document.createTextNode(' Ajouter une tâche ');
-  //     // Ajouter un évènement au clic sur le bouton "Ajouter une tâche"
-  //     addTaskContainer.addEventListener('click', toggleTask);
 
-  //     listToAdd.appendChild(deleteBtn);
-  //     listToAdd.appendChild(listName);
-  //     listToAdd.appendChild(addTaskContainerText);
 
-  //     // Ajouter la liste au conteneur
-  //     listContainer.insertBefore(listToAdd, form);
 
-  //     // Vider les champs de formulaire
-  //     inputName.value = '';
 
-  //     // Incrémenter l'indexList
-  //     indexList++;
-
-  //     addListContainer.addEventListener('click', toggleList);
-}
-
-export { inputDueDate, toggleTask };
