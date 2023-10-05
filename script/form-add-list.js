@@ -140,6 +140,45 @@ function createNewList(e) {
     taskTab: [],
   };
   allListsTab.push(newTabList);
+
+
+
+
+    // Récupérer le select
+    let selectList = document.querySelector('#dropdown1');
+
+    // Créer l'option
+    let option = document.createElement('option');
+    option.setAttribute('value', inputName.value);
+    option.textContent = inputName.value;
+
+    // selectList.appendChild(option.lastChild);
+    selectList.appendChild(option);
+
+    selectList.addEventListener('change', (e) => {
+        // const selectedValue = selectList.value;
+        // console.log('newTabList : ', newTabList);
+        // console.log('e.target.value : ', e.target.value);
+
+        let listContainer = document.querySelectorAll('.listContainer > div');
+        console.log('listContainer : ', listContainer);
+        let listContainerFirstChild = listContainer.children[1];
+        console.log('listContainerFirstChild : ', listContainerFirstChild);
+
+        // for (let option of selectList) {
+
+        //     switch(option.value) {
+        //         case 'allLists': selectedValue.style.display.block;
+        //         break;
+        //         case 'inputName.value': selectedValue.style.display.block;
+        //         break;
+        //         case '!inputName.value': selectedValue.style.display.none;
+        //     }
+        // }
+
+    })
+
+  
   console.log("newTabList", newTabList);
   console.log("allListsTab", allListsTab);
   // Créer un bouton pour supprimer la liste
