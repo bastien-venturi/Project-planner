@@ -8,16 +8,21 @@ let cartModal = document.querySelector('#cartModal');
 // console.log(cartModal);
 
 
-
-
 // Conteneur pour les inputs
 let inputGroupTask = document.createElement("div");
+inputGroupTask.style.display = 'flex';
+inputGroupTask.style.flexDirection = 'column';
+inputGroupTask.style.width = '50%';
+
 
 let inputNameTask = createInput("Saisissez le titre de la tâche...");
+inputNameTask.style.padding = '10px 0';
 let inputDescription = createInput("Saisissez la description...");
+inputDescription.style.padding = '10px 0';
 let inputDueDate = document.createElement("input");
 inputDueDate.type = "date";
-inputDueDate.placeholder = "Saisissez la date d'échéance...";
+inputDueDate.style.padding = '10px 0';
+// inputDueDate.placeholder = "Saisissez la date d'échéance...";
 
 inputGroupTask.appendChild(inputNameTask);
 inputGroupTask.appendChild(inputDescription);
@@ -25,10 +30,34 @@ inputGroupTask.appendChild(inputDueDate);
 
 // Conteneur pour les boutons (ajouter une liste - supprimer)
 let buttonGroupTask = document.createElement("div");
+buttonGroupTask.style.padding = '50px 0';
+buttonGroupTask.style.width = '50%';
+buttonGroupTask.style.display = 'flex';
+buttonGroupTask.style.justifyContent = 'space-between';
+
 // ---------------------------------------------
+
 // let buttonAddTask = createButton("Ajouter la tâche", createNewTask);
 let buttonAddTask = createButton("Ajouter la tâche");
+buttonAddTask.style.border = '1px solid grey';
+buttonAddTask.style.borderRadius = '5px';
+buttonAddTask.style.padding = '5px 15px';
+buttonAddTask.addEventListener("mouseenter", function( event ) {   
+    event.target.style.backgroundColor = 'lightgrey';
+}, false);
+buttonAddTask.addEventListener("mouseleave", function( event ) {   
+    event.target.style.backgroundColor = 'white';
+}, false);
 let buttonDeleteTask = createButton("Annuler");
+buttonDeleteTask.style.border = '1px solid grey';
+buttonDeleteTask.style.borderRadius = '5px';
+buttonDeleteTask.style.padding = '5px 15px';
+buttonDeleteTask.addEventListener("mouseenter", function( event ) {   
+    event.target.style.backgroundColor = 'lightgrey';
+}, false);
+buttonDeleteTask.addEventListener("mouseleave", function( event ) {   
+    event.target.style.backgroundColor = 'white';
+}, false);
 
 buttonGroupTask.appendChild(buttonAddTask);
 buttonGroupTask.appendChild(buttonDeleteTask);
@@ -45,24 +74,30 @@ function openModal(newTabList, allListsTab, eventSend) {
     inputDescription.value = '';
     inputDueDate.value = '';
 
-    console.log(newTabList);
+    // console.log(newTabList);
     cartModal.style.display = "block";
     cartModal.style.height = "500px";
     cartModal.style.width = "500px";
     cartModal.style.backgroundColor = "white";
     cartModal.style.position = "absolute";
-    cartModal.style.top = "40%";
+    cartModal.style.top = "20%";
     cartModal.style.left = "20%";
     cartModal.style.zIndex = "9999";
+    cartModal.style.justifyContent = 'center';
+    cartModal.style.alignItems = 'center';
+    cartModal.style.flexDirection = 'column';
+    cartModal.style.borderRadius = '10px';
 
     cartModal.appendChild(inputGroupTask);
     cartModal.appendChild(buttonGroupTask);
+    cartModal.style.display = 'flex';
+    
 
 
     // buttonAddTask.addEventListener('click', function() { createNewTask(listName) }, { once: true });
     buttonAddTask.addEventListener('click', function (e) {
         e.preventDefault();
-        console.log('allListsTab', allListsTab);
+        // console.log('allListsTab', allListsTab);
         // Créer un objet task
         let newTask = {
             nameList: newTabList.name,
@@ -74,7 +109,7 @@ function openModal(newTabList, allListsTab, eventSend) {
         
 
         newTabList.taskTab.push(newTask);
-        console.log("newTabList", newTabList);
+        // console.log("newTabList", newTabList);
 
         // Créer une nouvelle div pour la tâche
         let containerNewTask = document.createElement("div");
@@ -193,7 +228,7 @@ function openModal(newTabList, allListsTab, eventSend) {
 
         deleteTaskBtn.addEventListener("click", function (e) {
             e.preventDefault();
-            console.log('allListsTab', allListsTab);
+            // console.log('allListsTab', allListsTab);
             // Créer un objet task
             let newTask = {
                 nameList: newTabList.name,
@@ -202,7 +237,7 @@ function openModal(newTabList, allListsTab, eventSend) {
                 dueDateTask: inputDueDate.value,
                 status: null
             }
-            console.log('inputDueDate.value : ', inputDueDate.value);
+            // console.log('inputDueDate.value : ', inputDueDate.value);
 
             e.target.parentNode.remove();
         });

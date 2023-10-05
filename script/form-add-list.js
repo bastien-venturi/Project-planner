@@ -50,6 +50,8 @@ formList.appendChild(addListContainer);
 
 // Conteneur pour les inputs de création de liste
 let inputName = createInput("Saisissez le titre de la liste...");
+inputName.style.padding = '5px 10px';
+inputName.style.borderRadius = '5px';
 
 // Conteneur pour les boutons (ajouter une liste - supprimer)
 let buttonGroup = document.createElement("div");
@@ -60,6 +62,7 @@ let buttonGroup = document.createElement("div");
 // buttonGroup.style.width = " 200px";
 // ---------------------------------------------
 let buttonAddList = createButton("Ajouter la liste", createNewList);
+buttonAddList.style.marginRight = '20px';
 let buttonCancel = createButton("Annuler", cancelListCreation);
 buttonGroup.appendChild(buttonAddList);
 buttonGroup.appendChild(buttonCancel);
@@ -157,28 +160,28 @@ function createNewList(e) {
     selectList.addEventListener('change', (e) => {
         // const selectedValue = selectList.value;
         // console.log('newTabList : ', newTabList);
-        console.log('e.target.value : ', e.target.value);
+        // console.log('e.target.value : ', e.target.value);
 
         let listContainer = document.querySelectorAll('.listContainer > div > div:first-of-type h2');
         // console.log('listContainer : ', listContainer);
         // let listNameToFind = listContainer.outerText;
         // console.log('listNameToFind : ', listNameToFind);
         for (let list of listContainer) {
-          if (e.target.value === 'allLists') {
-            list.parentNode.parentNode.style.display = 'block';
-          }
-          else if (list.outerText === e.target.value) {
-            // console.log('list.outerText : ', list.outerText);
-            // console.log('list : ', list);
-            // console.log('list.parentNode : ', list.parentNode);
-            // console.log('list.parentNode.parentNode : ', list.parentNode.parentNode);
-            list.parentNode.parentNode.style.display = 'block';
-          }
-          else {
-            list.parentNode.parentNode.style.display = 'none';
-          }
+            if (e.target.value === 'allLists') {
+                list.parentNode.parentNode.style.display = 'block';
+            }
+            else if (list.outerText === e.target.value) {
+                // console.log('list.outerText : ', list.outerText);
+                // console.log('list : ', list);
+                // console.log('list.parentNode : ', list.parentNode);
+                // console.log('list.parentNode.parentNode : ', list.parentNode.parentNode);
+                list.parentNode.parentNode.style.display = 'block';
+            }
+            else {
+                list.parentNode.parentNode.style.display = 'none';
+            }
         }
-        
+
 
         // for (let option of selectList) {
 
@@ -193,7 +196,7 @@ function createNewList(e) {
 
     })
 
-    
+
 
 
     // Créer un bouton pour supprimer la liste
