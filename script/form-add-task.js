@@ -5,7 +5,7 @@ import { createButton } from './createButton.js';
 
 // Récupérer la div cartModal
 let cartModal = document.querySelector('#cartModal');
-console.log(cartModal);
+// console.log(cartModal);
 
 
 
