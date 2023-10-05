@@ -7,12 +7,14 @@ let cartModal = document.querySelector("#cartModal");
 
 // Conteneur pour les inputs
 let inputGroupTask = document.createElement("div");
+inputGroupTask.classList.add("mt-4");
 
 let inputNameTask = createInput("Saisissez le titre de la tâche...");
 let inputDescription = createInput("Saisissez la description...");
+inputDescription.style.marginTop = "8px";
+inputDescription.style.marginBottom = "8px";
 let inputDueDate = document.createElement("input");
 inputDueDate.type = "date";
-inputDueDate.placeholder = "Saisissez la date d'échéance...";
 
 inputGroupTask.appendChild(inputNameTask);
 inputGroupTask.appendChild(inputDescription);
@@ -23,7 +25,9 @@ let buttonGroupTask = document.createElement("div");
 // ---------------------------------------------
 // let buttonAddTask = createButton("Ajouter la tâche", createNewTask);
 let buttonAddTask = createButton("Ajouter la tâche");
+buttonAddTask.style.marginRight = "8px";
 let buttonDeleteTask = createButton("Annuler");
+buttonDeleteTask.style.marginelft = "8px";
 
 buttonGroupTask.appendChild(buttonAddTask);
 buttonGroupTask.appendChild(buttonDeleteTask);
@@ -37,10 +41,15 @@ function openModal(newTabList, allListsTab, eventSend) {
   inputDueDate.value = "";
 
   console.log(newTabList);
-  cartModal.style.display = "block";
-  cartModal.style.height = "500px";
-  cartModal.style.width = "500px";
-  cartModal.style.backgroundColor = "white";
+  cartModal.classList.add(
+    "flex",
+    "flex-col",
+    "h-20",
+    "rounded-lg",
+    "text-center"
+  );
+  cartModal.style.width = "300px";
+  cartModal.style.backgroundColor = "lightgray";
   cartModal.style.position = "absolute";
   cartModal.style.top = "40%";
   cartModal.style.left = "20%";
@@ -142,57 +151,56 @@ function openModal(newTabList, allListsTab, eventSend) {
       descriptionTag.textContent = inputDescription.value;
       //   dueDateTag.textContent = inputDueDate.value;
       displayCreaDateSpan.textContent = new Date().toLocaleDateString();
-    //   displayDueDate.textContent = "Time Temaining";
+      //   displayDueDate.textContent = "Time Temaining";
       deleteTaskBtn.textContent = "x";
 
-    // Calcul du nombre de jours restants 
-    const DueDate = new Date(inputDueDate.value);
-    let daysRemaining = null;
-    let secondsRemaining = null;
-    let timeDifference = null;
-    let currentDate = new Date();
+      // Calcul du nombre de jours restants
+      const DueDate = new Date(inputDueDate.value);
+      let daysRemaining = null;
+      let secondsRemaining = null;
+      let timeDifference = null;
+      let currentDate = new Date();
 
-    if (!isNaN(DueDate.getTime())) {
-
+      if (!isNaN(DueDate.getTime())) {
         function updateCurrentDate() {
-            currentDate = new Date();
-            // let timeDifference = DueDate - currentDate;
-            timeDifference = DueDate - currentDate;
-            // Calculez les jours et les heures restants
-            daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
-            secondsRemaining = Math.floor(timeDifference / (1000));
-            // console.log('daysRemaining : ', daysRemaining);
-            // console.log('secondsRemaining : ', secondsRemaining);
-            // Affichez le résultat
-            if (daysRemaining > 0) {
-                displayDueDateSpan.textContent = `${daysRemaining} days`;
-                // console.log(`daysRemaining : ${daysRemaining}`);
-                // console.log('currentDate : ', currentDate);
-                // console.log('timeDifference : ', timeDifference);
-            } else {
-                displayDueDateSpan.textContent = `Warning!`;
-                // console.log(`Warning!`);
-            }
+          currentDate = new Date();
+          // let timeDifference = DueDate - currentDate;
+          timeDifference = DueDate - currentDate;
+          // Calculez les jours et les heures restants
+          daysRemaining = Math.floor(
+            timeDifference / (24 * 60 * 60 * 1000) + 1
+          );
+          secondsRemaining = Math.floor(timeDifference / 1000);
+          // console.log('daysRemaining : ', daysRemaining);
+          // console.log('secondsRemaining : ', secondsRemaining);
+          // Affichez le résultat
+          if (daysRemaining > 0) {
+            displayDueDateSpan.textContent = `${daysRemaining} days`;
+            // console.log(`daysRemaining : ${daysRemaining}`);
+            // console.log('currentDate : ', currentDate);
+            // console.log('timeDifference : ', timeDifference);
+          } else {
+            displayDueDateSpan.textContent = `Warning!`;
+            // console.log(`Warning!`);
+          }
         }
 
         setInterval(updateCurrentDate, 1000);
-        
-        
-    };
+      }
 
       deleteTaskBtn.addEventListener("click", function (e) {
         e.preventDefault();
-        console.log('allListsTab', allListsTab);
+        console.log("allListsTab", allListsTab);
         // Créer un objet task
         let newTask = {
-            nameList: newTabList.name,
-            nameTask: inputNameTask.value,
-            descriptionTask: inputDescription.value,
-            dueDateTask: inputDueDate.value,
-            status: null
-        }
-        console.log('inputDueDate.value : ', inputDueDate.value);
-        
+          nameList: newTabList.name,
+          nameTask: inputNameTask.value,
+          descriptionTask: inputDescription.value,
+          dueDateTask: inputDueDate.value,
+          status: null,
+        };
+        console.log("inputDueDate.value : ", inputDueDate.value);
+
         e.target.parentNode.remove();
       });
 
