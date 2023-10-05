@@ -157,12 +157,28 @@ function createNewList(e) {
     selectList.addEventListener('change', (e) => {
         // const selectedValue = selectList.value;
         // console.log('newTabList : ', newTabList);
-        // console.log('e.target.value : ', e.target.value);
+        console.log('e.target.value : ', e.target.value);
 
-        let listContainer = document.querySelectorAll('.listContainer > div');
-        console.log('listContainer : ', listContainer);
-        let listContainerFirstChild = listContainer.children[1];
-        console.log('listContainerFirstChild : ', listContainerFirstChild);
+        let listContainer = document.querySelectorAll('.listContainer > div > div:first-of-type h2');
+        // console.log('listContainer : ', listContainer);
+        // let listNameToFind = listContainer.outerText;
+        // console.log('listNameToFind : ', listNameToFind);
+        for (let list of listContainer) {
+          if (e.target.value === 'allLists') {
+            list.parentNode.parentNode.style.display = 'block';
+          }
+          else if (list.outerText === e.target.value) {
+            // console.log('list.outerText : ', list.outerText);
+            // console.log('list : ', list);
+            // console.log('list.parentNode : ', list.parentNode);
+            // console.log('list.parentNode.parentNode : ', list.parentNode.parentNode);
+            list.parentNode.parentNode.style.display = 'block';
+          }
+          else {
+            list.parentNode.parentNode.style.display = 'none';
+          }
+        }
+        
 
         // for (let option of selectList) {
 
