@@ -84,16 +84,33 @@ function openModal(newTabList, allListsTab, eventSend) {
         let containerNewTask = document.createElement('div');
         containerNewTask.classList.add('task');
 
-        let nameTag = document.createElement('p');
-        let descriptionTag = document.createElement('p');
-        let dueDateTag = document.createElement('p');
+        // Contenu de la div (nom, description, date d'échéance, bouton pour supprimer la tâche)
+        let nameTag = document.createElement('div');
+        let descriptionTag = document.createElement('div');
+        let dueDateTag = document.createElement('div');
+        let displayCreaDate = document.createElement('div');
+        let displayDueDate = document.createElement('div');
+        let deleteTaskBtn = document.createElement('button');
         nameTag.textContent = inputNameTask.value;
         descriptionTag.textContent = inputDescription.value;
         dueDateTag.textContent = inputDueDate.value;
+        displayCreaDate.textContent = 'Date';
+        displayDueDate.textContent = 'Time Temaining';
+        deleteTaskBtn.textContent = 'x';
+
+
+        deleteTaskBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.target.parentNode.remove();
+        })
 
         containerNewTask.appendChild(nameTag);
         containerNewTask.appendChild(descriptionTag);
         containerNewTask.appendChild(dueDateTag);
+        containerNewTask.appendChild(displayCreaDate);
+        containerNewTask.appendChild(displayDueDate);
+        containerNewTask.appendChild(deleteTaskBtn);
+
 
         let containerAllTasks = eventSend.target.parentNode.parentNode;
         let form = eventSend.target.parentNode;
