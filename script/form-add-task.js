@@ -42,7 +42,10 @@ buttonGroupTask.appendChild(buttonDeleteTask);
 
 
 // Open modal
-function openModal(newTabList, allListsTab) {
+function openModal(newTabList, allListsTab, eventSend) {
+
+    // console.log(eventSend.target.parentNode);
+    // console.log(eventSend.target.parentNode.parentNode);
     inputNameTask.value = '';
     inputDescription.value ='';
     inputDueDate.value = '';
@@ -62,7 +65,8 @@ function openModal(newTabList, allListsTab) {
 
 
     // buttonAddTask.addEventListener('click', function() { createNewTask(listName) }, { once: true });
-    buttonAddTask.addEventListener('click', function() { 
+    buttonAddTask.addEventListener('click', function(e) { 
+        e.preventDefault();
         console.log('allListsTab', allListsTab);
         // Créer un objet task
         let newTask = {
@@ -75,6 +79,28 @@ function openModal(newTabList, allListsTab) {
 
         newTabList.taskTab.push(newTask);
         console.log('newTabList', newTabList);
+
+        // Créer une nouvelle div pour la tâche
+        let containerNewTask = document.createElement('div');
+        containerNewTask.classList.add('task');
+
+        let nameTag = document.createElement('p');
+        let descriptionTag = document.createElement('p');
+        let dueDateTag = document.createElement('p');
+        nameTag.textContent = inputNameTask.value;
+        descriptionTag.textContent = inputDescription.value;
+        dueDateTag.textContent = inputDueDate.value;
+
+        containerNewTask.appendChild(nameTag);
+        containerNewTask.appendChild(descriptionTag);
+        containerNewTask.appendChild(dueDateTag);
+
+        let containerAllTasks = eventSend.target.parentNode.parentNode;
+        let form = eventSend.target.parentNode;
+        // console.log('containerAllTasks : ', containerAllTasks);
+        // console.log('form : ', form);
+        containerAllTasks.insertBefore(containerNewTask, form);
+
 
         closeModal();
     }, {once: true});

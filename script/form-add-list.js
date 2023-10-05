@@ -166,13 +166,17 @@ function createNewList(e) {
     //     toggleTask(spanPlusSymbolTask, addTaskContainer, addTaskContainerText, formTask);
     // }, { once: true });
     // formTask.addEventListener("click", function() { console.log(listName.textContent) });
-    formTask.addEventListener("click", function() { openModal(newTabList, allListsTab), { once: true } });
+    formTask.addEventListener("click", function(e) { openModal(newTabList, allListsTab, e), { once: true } });
 
+    // Conteneur avec Toutes les tâches
+    let containerAllTasks = document.createElement('div');
+    containerAllTasks.classList.add('containerAllTasks');
 
     listToAdd.appendChild(deleteBtn);
     listToAdd.appendChild(titleDiv);
     titleDiv.appendChild(listName);
-    listToAdd.appendChild(formTask);
+    listToAdd.appendChild(containerAllTasks);
+    containerAllTasks.appendChild(formTask);
 
     // Ajouter la liste au conteneur
     listContainer.insertBefore(listToAdd, formList);
