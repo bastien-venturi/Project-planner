@@ -76,6 +76,8 @@ function openModal(newTabList, allListsTab, eventSend) {
             dueDateTask: inputDueDate.value,
             status: null
         }
+        console.log('inputDueDate.value : ', inputDueDate.value);
+        
 
         newTabList.taskTab.push(newTask);
         console.log('newTabList', newTabList);
@@ -94,9 +96,45 @@ function openModal(newTabList, allListsTab, eventSend) {
         nameTag.textContent = inputNameTask.value;
         descriptionTag.textContent = inputDescription.value;
         dueDateTag.textContent = inputDueDate.value;
-        displayCreaDate.textContent = 'Date';
-        displayDueDate.textContent = 'Time Temaining';
+
+        // displayCreaDate.textContent = 'Date';
+        displayCreaDate.textContent = new Date().toLocaleDateString();
+        
         deleteTaskBtn.textContent = 'x';
+
+
+        // Calcul du nombre de jours restants 
+        const DueDate = new Date(inputDueDate.value);
+        let daysRemaining = null;
+        let secondsRemaining = null;
+        let timeDifference = null;
+        let currentDate = new Date();
+
+        if (!isNaN(DueDate.getTime())) {
+
+            function updateCurrentDate() {
+                currentDate = new Date();
+                // let timeDifference = DueDate - currentDate;
+                timeDifference = DueDate - currentDate;
+                // Calculez les jours et les heures restants
+                daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
+                secondsRemaining = Math.floor(timeDifference / (1000));
+                // console.log('daysRemaining : ', daysRemaining);
+                // console.log('secondsRemaining : ', secondsRemaining);
+                displayDueDate.textContent = `${daysRemaining} days`;
+            }
+
+            setInterval(updateCurrentDate, 1000);
+            
+            // Affichez le résultat
+            if (daysRemaining > 0) {
+                console.log(`daysRemaining : ${daysRemaining}`);
+                console.log('currentDate : ', currentDate);
+                console.log('timeDifference : ', timeDifference);
+            } else {
+                console.log(`Warning!`);
+            }
+        };
 
 
         deleteTaskBtn.addEventListener('click', function(e) {
@@ -106,7 +144,7 @@ function openModal(newTabList, allListsTab, eventSend) {
 
         containerNewTask.appendChild(nameTag);
         containerNewTask.appendChild(descriptionTag);
-        containerNewTask.appendChild(dueDateTag);
+        // containerNewTask.appendChild(dueDateTag);
         containerNewTask.appendChild(displayCreaDate);
         containerNewTask.appendChild(displayDueDate);
         containerNewTask.appendChild(deleteTaskBtn);

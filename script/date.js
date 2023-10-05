@@ -1,28 +1,32 @@
 //import {inputDueDate} from './form-add-task';
 
 
+
 // Demandez à l'utilisateur d'entrer une date au format "jj-mm-aaaa"
-const inputDateString = prompt("Veuillez entrer une date au format jj-mm-aaaa :");
+// const inputDateString = prompt("Veuillez entrer une date au format jj-mm-aaaa :");
 
 // Convertissez la chaîne de caractères en objet Date
-const inputDueDate = parseDate(inputDateString);
+// const inputDueDate = parseDate(inputDateString);
 
-// Vérifiez si la date est valide
-if (!isNaN(inputDueDate.getTime())) {
-  const currentDate = new Date();
-  const timeDifference = inputDueDate - currentDate;
 
-  // Calculez les jours et les heures restants
-  const daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
+
+
+// // Vérifiez si la date est valide
+// if (!isNaN(inputDueDate.getTime())) {
+//   const currentDate = new Date();
+//   const timeDifference = inputDueDate - currentDate;
+
+//   // Calculez les jours et les heures restants
+//   const daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
   
 
-  // Affichez le résultat
-  if (daysRemaining > 0) {
-    console.log(`${daysRemaining}`);
-  } else {
-    console.log(`Warning!`);
-  }
-};
+//   // Affichez le résultat
+//   if (daysRemaining > 0) {
+//     console.log(`${daysRemaining}`);
+//   } else {
+//     console.log(`Warning!`);
+//   }
+// };
 
 
 
@@ -45,24 +49,24 @@ function parseDate(input) {
 
 
 
-console.log(displayduedate);
- // Function for the current date
+// console.log(displayduedate);
+//  // Function for the current date
  
- function formatDate(date) {
-     const options = {
-         year: '2-digit',
-         month: '2-digit',
-         day: '2-digit',
-     };
+//  function formatDate(date) {
+//      const options = {
+//          year: '2-digit',
+//          month: '2-digit',
+//          day: '2-digit',
+//      };
  
- }
+//  }
  
- const datecreation = new Date();
- const displaycreadate = formatDate(datecreation);
+//  const datecreation = new Date();
+//  const displaycreadate = formatDate(datecreation);
  
  
  
- console.log(displaycreadate);
+//  console.log(displaycreadate);
  
 
 //export {displaycreadate,displayduedate};
@@ -72,3 +76,4 @@ const inputDate = document.createElement('input');
 inputDate.type = "date";
 inputDate.placeholder = 'Enter date';
 */
+
