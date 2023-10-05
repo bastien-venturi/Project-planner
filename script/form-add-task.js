@@ -71,8 +71,62 @@ function openModal(newTabList, allListsTab, eventSend) {
             dueDateTask: inputDueDate.value,
             status: null
         }
-        // calcul duedate
+        
 
+        newTabList.taskTab.push(newTask);
+        console.log("newTabList", newTabList);
+
+        // Créer une nouvelle div pour la tâche
+        let containerNewTask = document.createElement("div");
+        containerNewTask.classList.add(
+            "task",
+            "draggable",
+            "relative",
+            "flex",
+            "flex-col",
+            "items-start",
+            "p-4",
+            "mt-3",
+            "bg-white",
+            "rounded-lg",
+            "cursor-pointer",
+            "bg-opacity-90",
+            "group",
+            "hover:bg-opacity-100"
+        );
+        containerNewTask.setAttribute("draggable", "true");
+
+        // Contenu de la div (nom, description, date d'échéance, bouton pour supprimer la tâche)
+        let nameTag = document.createElement("div");
+        nameTag.classList.add(
+            "flex",
+            "items-center",
+            "h-6",
+            "px-3",
+            "text-xs",
+            "font-semibold",
+            "bg-pink-100",
+            "rounded-full"
+        );
+        let descriptionTag = document.createElement("h4");
+        descriptionTag.classList.add("mt-3", "text-sm", "font-medium");
+        let dueDateTag = document.createElement("div");
+        dueDateTag.classList.add(
+            "flex",
+            "items-center",
+            "w-full",
+            "mt-3",
+            "text-xs",
+            "font-medium",
+            "text-gray-400"
+        );
+        let displayCreaDate = document.createElement("div");
+        let displayCreaDateSpan = document.createElement("span");
+        displayCreaDateSpan.classList.add("ml-1", "leading-none");
+        let displayDueDate = document.createElement("div");
+        displayDueDate.classList.add("date", "ml-4");
+        let displayDueDateSpan = document.createElement("span");
+        displayDueDateSpan.classList.add("ml-1", "leading-none");
 
 
 
@@ -175,14 +229,11 @@ function openModal(newTabList, allListsTab, eventSend) {
 
     buttonDeleteTask.addEventListener('click', closeModal, { once: true })
 
-
 }
 // Close modal
 function closeModal() {
     cartModal.style.display = "none";
 }
-
-
 
 
 export { openModal };

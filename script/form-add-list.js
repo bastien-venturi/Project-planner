@@ -196,6 +196,8 @@ function createNewList(e) {
     console.log("allListsTab : ", allListsTab);
     allListsTab.splice(indexListToDelete, 1);
     console.log("allListsTab : ", allListsTab);
+
+    option.remove();
   });
   // Créer un formulaire pour ajouter des tâches
   let formTask = document.createElement("form");
