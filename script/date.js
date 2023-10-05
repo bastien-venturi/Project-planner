@@ -1,17 +1,49 @@
-import {inputDueDate,createNewTask} from './form-add-list';
+import {inputDueDate} from './form-add-task';
+
+console.log(inputDueDate.value);
+
+// Convertissez la chaîne de caractères en objet Date
+const inputDueDate = parseDate(inputDueDate.value);
+
+// Vérifiez si la date est valide
+if (!isNaN(inputDueDate.getTime())) {
+  const currentDate = new Date();
+  const timeDifference = inputDueDate - currentDate;
+
+  // Calculez les jours et les heures restants
+  const daysRemaining = Math.floor(timeDifference / (24 * 60 * 60 * 1000)+1);
+  
+
+  // Affichez le résultat
+  if (daysRemaining > 0) {
+    console.log(`${daysRemaining}`);
+  } else {
+    console.log(`Warning!`);
+  }
+};
+
+taskTab[0].dueDateTask
+[0].taskTab[0].dueDateTask
+
+/* Fonction pour convertir une chaîne de caractères en objet Date
+function parseDate(input) {
+    const parts = input.split("-");
+    if (parts.length === 3) {
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1;
+            const year = parseInt(parts[2], 10);
+            return new Date(year, month, day);
+    }
+}
+*/
 
 
-    const enterdate = new Date(inputDueDate.value);
-    const currenttime = Date.now();
-    const userEnteredTime = enterdate.getTime();
-    const timeDifference = currenttime - userEnteredTime;
-    const daypass = Math.floor(timeDifference / (24 * 60 * 60 * 1000));
-    
-    displayduedate.textContent = ` ${daypass} days.`;
 
 
 
 
+
+console.log(displayduedate);
  // Function for the current date
  
  function formatDate(date) {
@@ -24,13 +56,15 @@ import {inputDueDate,createNewTask} from './form-add-list';
  }
  
  const datecreation = new Date();
- const formattedate = formatDate(datecreation);
+ const displaycreadate = formatDate(datecreation);
  
- displaycreadate.textContent = formattedate;
  
- console.log(displaycreadate);
+ 
+ console.log(displayCreaDate);
+ console.log(displayDuesDate);
+ 
 
-export {displaycreadate,displayduedate};
+//export {displaycreadate,displayduedate};
 
 /*
 const inputDate = document.createElement('input');
