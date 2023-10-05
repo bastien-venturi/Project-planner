@@ -1,15 +1,11 @@
-//import {inputDueDate} from './form-add-task';
+// //import {inputDueDate} from './form-add-task';
 
 
-
-// Demandez à l'utilisateur d'entrer une date au format "jj-mm-aaaa"
+// // Demandez à l'utilisateur d'entrer une date au format "jj-mm-aaaa"
 // const inputDateString = prompt("Veuillez entrer une date au format jj-mm-aaaa :");
 
-// Convertissez la chaîne de caractères en objet Date
+// // Convertissez la chaîne de caractères en objet Date
 // const inputDueDate = parseDate(inputDateString);
-
-
-
 
 // // Vérifiez si la date est valide
 // if (!isNaN(inputDueDate.getTime())) {
@@ -31,17 +27,17 @@
 
 
 
-/* Fonction pour convertir une chaîne de caractères en objet Date
-function parseDate(input) {
-    const parts = input.split("-");
-    if (parts.length === 3) {
-            const day = parseInt(parts[0], 10);
-            const month = parseInt(parts[1], 10) - 1;
-            const year = parseInt(parts[2], 10);
-            return new Date(year, month, day);
-    }
-}
-*/
+// /* Fonction pour convertir une chaîne de caractères en objet Date
+// function parseDate(input) {
+//     const parts = input.split("-");
+//     if (parts.length === 3) {
+//             const day = parseInt(parts[0], 10);
+//             const month = parseInt(parts[1], 10) - 1;
+//             const year = parseInt(parts[2], 10);
+//             return new Date(year, month, day);
+//     }
+// }
+// */
 
 
 
@@ -69,11 +65,10 @@ function parseDate(input) {
 //  console.log(displaycreadate);
  
 
-//export {displaycreadate,displayduedate};
+// //export {displaycreadate,displayduedate};
 
-/*
-const inputDate = document.createElement('input');
-inputDate.type = "date";
-inputDate.placeholder = 'Enter date';
-*/
-
+// /*
+// const inputDate = document.createElement('input');
+// inputDate.type = "date";
+// inputDate.placeholder = 'Enter date';
+// */

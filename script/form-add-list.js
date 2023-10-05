@@ -61,6 +61,7 @@ let buttonGroup = document.createElement("div");
 // ---------------------------------------------
 let buttonAddList = createButton("Ajouter la liste", createNewList);
 let buttonCancel = createButton("Annuler", cancelListCreation);
+buttonCancel.style.marginLeft = "8px";
 buttonGroup.appendChild(buttonAddList);
 buttonGroup.appendChild(buttonCancel);
 
